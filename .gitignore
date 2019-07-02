@@ -3,3 +3,8 @@
 将删除 Vue-gulu.iml
 将删除 node_modules/
 将删除 package-lock.json
+将删除 dist/
+
+node_modules/
+dist/
+.cache/

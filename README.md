@@ -4,6 +4,12 @@
 
 ## 安装
 
+启动 
+
+```
+npx parcel index.html --no-cache
+```
+
 使用本框架之前请在 CSS 中启用 border-box
 
 ```css
