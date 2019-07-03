@@ -6,4 +6,4 @@ Vue.component('g-button',Button);
 new Vue({
     el: "#app",
 
-})
+});
