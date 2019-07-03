@@ -6,7 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": "git+https://github.com/331862806/Vue-gulu.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/331862806/Vue-gulu.git"
+  },
   "keywords": [
     "vue",
     "ui"
