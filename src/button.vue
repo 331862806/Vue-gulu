@@ -3,7 +3,7 @@
         <g-icon class="icon" v-if="icon" :name="icon"></g-icon>
 
         <div class="content">
-            <slot></slot>
+            <slot/>
         </div>
     </button>
 </template>
