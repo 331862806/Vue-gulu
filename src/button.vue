@@ -1,7 +1,7 @@
 <template>
-    <button class="g-button" :class="{[`icon-${iconPosition}`]:true}">
-        <g-icon class="icon" v-if="icon" :name="icon"></g-icon>
-        <g-icon class="loadding" name="loading"></g-icon>
+    <button class="g-button" :class="{[`icon-${iconPosition}`]:true}" @click="$emit('click')">
+        <g-icon class="icon" v-if="icon && !loading " :name="icon"></g-icon>
+        <g-icon class="loadding icon" v-if="loading" name="loading"></g-icon>
         <div class="content">
             <slot/>
         </div>
@@ -11,8 +11,13 @@
 <script>
     export default {
         // props: ['icon', 'iconPosition']
+        // iconPosition : left right
         props: {
             icon:{},
+            loading:{
+              type:Boolean,
+              default: false
+            },
             iconPosition:{
                 type:String,
                 default:'left',
@@ -41,6 +46,7 @@
         justify-content: center;
         align-items: center;
         /*vertical-align: top;*/
+        /*相邻几个内元素上下不对齐统一加，具体看简书的button*/
         vertical-align: middle;
 
         &:hover {
@@ -58,7 +64,7 @@
 
         > .icon {
             order: 1;
-            margin-right: .1em;
+            margin-right: 0.1em;
         }
 
         > .content {
