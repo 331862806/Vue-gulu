@@ -19,6 +19,9 @@ new Vue({
 
 // 单元测试
 import chai from 'chai'
+import spies from 'chai-spies'
+
+chai.use(spies);
 
 const expect = chai.expect;
 
@@ -91,11 +94,13 @@ const expect = chai.expect;
         }
     });
     vm.$mount();
-    vm.$on('click', function () {
-        expect(1).to.eq(1)
+    let spy = chai.spy(() => {
     });
+
+    vm.$on('click', spy);
     // 希望这个函数被执行
-    let button =vm.$el;
+    let button = vm.$el;
     console.log(button);
-    button.click()
+    button.click();
+    expect(spy).to.have.been.called()
 }
