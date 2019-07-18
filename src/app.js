@@ -36,6 +36,8 @@ const expect = chai.expect;
     let useElement = vm.$el.querySelector('use')
     let href = useElement.getAttribute('xlink:href')
     expect(href).to.eq('#i-setting')
+    vm.$el.remove();
+    vm.$destroy();
 }
 
 {
@@ -50,6 +52,8 @@ const expect = chai.expect;
     let useElement = vm.$el.querySelector('use')
     let href = useElement.getAttribute('xlink:href')
     expect(href).to.eq('#i-loading')
+    vm.$el.remove();
+    vm.$destroy();
 }
 
 {
@@ -65,7 +69,8 @@ const expect = chai.expect;
     let svg = vm.$el.querySelector('svg')
     let {order} = window.getComputedStyle(svg);
     expect(order).to.eq('1')
-    vm.$el.remove()
+    vm.$el.remove();
+    vm.$destroy();
 }
 
 {
@@ -82,7 +87,8 @@ const expect = chai.expect;
     let svg = vm.$el.querySelector('svg')
     let {order} = window.getComputedStyle(svg);
     expect(order).to.eq('2');
-    vm.$el.remove()
+    vm.$el.remove();
+    vm.$destroy()
 }
 
 {
