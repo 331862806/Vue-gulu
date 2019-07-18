@@ -9,19 +9,23 @@
 </template>
 
 <script>
+    import Vue from 'vue'
+    import Icon from './icon'
+
+    Vue.component('g-icon', Icon);
     export default {
         // props: ['icon', 'iconPosition']
         // iconPosition : left right
         props: {
-            icon:{},
-            loading:{
-              type:Boolean,
-              default: false
+            icon: {},
+            loading: {
+                type: Boolean,
+                default: false
             },
-            iconPosition:{
-                type:String,
-                default:'left',
-                validator(value){
+            iconPosition: {
+                type: String,
+                default: 'left',
+                validator(value) {
                     return value === 'left' || value === 'right';
                 }
             }
@@ -32,8 +36,12 @@
 <style lang="scss">
     .g-button {
         @keyframes spin {
-            0%{transform: rotate(0deg)}
-            100%{transform: rotate(360deg)}
+            0% {
+                transform: rotate(0deg)
+            }
+            100% {
+                transform: rotate(360deg)
+            }
         }
 
         font-size: inherit;
@@ -82,8 +90,9 @@
                 order: 1;
             }
         }
-        .loadding{
-            animation:spin 1s infinite linear;
+
+        .loadding {
+            animation: spin 1s infinite linear;
         }
     }
 
