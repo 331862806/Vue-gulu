@@ -12,6 +12,7 @@
     import Icon from './icon'
 
     export default {
+        name:'GuLuButton',
         components:{
             'g-icon':Icon
         },
@@ -32,7 +33,7 @@
     }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     .g-button {
         @keyframes spin {
             0% {

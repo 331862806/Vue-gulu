@@ -6,7 +6,7 @@
 
 <script>
     export default {
-        name: "button-group",
+        name: "GuLuButton-group",
         mounted() {
             for (let node of this.$el.children) {
                 let name = node.nodeName.toLocaleLowerCase();
@@ -18,7 +18,7 @@
     }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     .button-group {
         display: inline-flex;
         vertical-align: middle;
