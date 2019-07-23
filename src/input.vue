@@ -1,7 +1,10 @@
 <template>
     <div class="wrapper" :class="{error}">
         <input type="text" :value="value" :disabled="disabled" :readonly="readonly">
-        <icon v-if="error" name="setting"></icon>
+        <template v-if="error">
+            <icon name="error" class="icon-error"></icon>
+            <span class="errorMessage">{{error}}</span>
+        </template>
     </div>
 </template>
 
@@ -9,7 +12,7 @@
     import Icon from './icon'
 
     export default {
-        components:{Icon},
+        components: {Icon},
         name: "GuLuInput",
         props: {
             value: {
@@ -31,14 +34,6 @@
 </script>
 
 <style lang="scss" scoped>
-    /*--button-height: 32px;*/
-    /*--font-size: 14px;*/
-    /*--button-bg: while;*/
-    /*--button-active-bg: #eee;*/
-    /*--border-radius: 4px;*/
-    /*--color: #333;*/
-    /*--border-color: #999;*/
-    /*--border-color-hover: #666;*/
     $height: 32px;
     $border-color: #999;
     $border-radius: 4px;
@@ -46,38 +41,25 @@
     $font-size: 12px;
     $box-shadow-color: rgba(0, 0, 0, 0.5);
     $red: #F1453D;
-    .wrapper {
-        font-size: $font-size;
-        display: inline-block;
+    .wrapper {font-size: $font-size;display: inline-block;align-items: center;
 
-        > input {
-            height: 32px;
-            border: 1px solid $border-color;
-            border-radius: $border-radius;
-            padding: 0 8px;
-            font-size: inherit;
+        > * :not(:last-child){margin-right: .5em}
 
-            &:hover {
-                border-color: $border-color-hover;
-            }
+        > input {height: 32px;border: 1px solid $border-color;border-radius: $border-radius;padding: 0 8px;font-size: inherit;
 
-            &:focus {
-                box-shadow: inset 0 1px 3px $box-shadow-color;
-                outline: none;
-            }
+            &:hover {border-color: $border-color-hover;}
 
-            &[disabled], &[readonly] {
-                border-color: #bbb;
-                color: #bbb;
-                cursor: not-allowed;
-            }
+            &:focus {box-shadow: inset 0 1px 3px $box-shadow-color;outline: none;}
+
+            &[disabled], &[readonly] {border-color: #bbb;color: #bbb;cursor: not-allowed;}
         }
 
         &.error {
-            >input{
-                border-color: $red;
-            }
+            > input {border-color: $red;}
         }
 
+        .icon-error {fill: $red;}
+
+        .errorMessage {color: $red;}
     }
 </style>
