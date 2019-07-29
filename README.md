@@ -2,6 +2,7 @@
 
 作者:me
 
+[![Build Status](https://travis-ci.org/331862806/Vue-gulu.svg?branch=master)](https://travis-ci.org/331862806/Vue-gulu)
 ## 安装
 
 启动 
