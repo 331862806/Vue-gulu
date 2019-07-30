@@ -22,7 +22,7 @@
             //     type: [Number, String]
             // }
         },
-        data () {
+        data() {
             return {
                 gutter: 0
             }
@@ -36,20 +36,22 @@
         },
     }
 </script>
-<style scoped lang="scss"> .col {width: 50%;
+<style scoped lang="scss">
 
-    $class: col-;
-    @for $n from 1 through 24 {
-        &.#{$class}#{$n} {
-            width: ($n/24)*100%;
+    .col {width: 50%;
+
+        $class: col-;
+        @for $n from 1 through 24 {
+            &.#{$class}#{$n} {
+                width: ($n/24)*100%;
+            }
+        }
+
+        $class: offset-;
+        @for $n from 1 through 24 {
+            &.#{$class}#{$n} {
+                margin-left: ($n/24)*100%;
+            }
         }
     }
-
-    $class: offset-;
-    @for $n from 1 through 24 {
-        &.#{$class}#{$n} {
-            margin-left: ($n/24)*100%;
-        }
-    }
-}
 </style>
