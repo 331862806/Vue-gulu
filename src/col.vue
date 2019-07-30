@@ -18,15 +18,15 @@
             offset: {
                 type: [Number, String]
             },
-            gutter: {
-                type: [Number, String]
+            // gutter: {
+            //     type: [Number, String]
+            // }
+        },
+        data () {
+            return {
+                gutter: 0
             }
         },
-        // data () {
-        //     return {
-        //         gutter: 0
-        //     }
-        // },
         created() {
             console.log("row created")
         },
