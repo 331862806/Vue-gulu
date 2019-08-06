@@ -25,7 +25,7 @@
                 type: [Number, String]
             },
             // phone: {type: Object, validator:validator(),},
-            phone: {type: Object, validator,},
+            // phone: {type: Object, validator,},
             ipad: {type: Object, validator,},
             narrowPc: {type: Object, validator,},
             pc: {type: Object, validator,},
@@ -41,15 +41,14 @@
         },
         computed: {
             colClass() {
-                let {span, offset, phone, ipad, narrowPc, pc, widePc} = this;
+                let {span, offset, ipad, narrowPc, pc, widePc} = this;
                 return [
                     span && `col-${span}`,
                     offset && `offset-${offset}`,
-                    ...(phone && [`col-phone-${phone.span}`]),
-                    ...(ipad && [`col-ipad-${ipad.span}`]),
-                    ...(narrowPc && [`col-narrow-Pc-${narrowPc.span}`]),
-                    ...(pc && [`col-pc-${pc.span}`]),
-                    ...(widePc && [`col-wide-pc-${widePc.span}`]),
+                    ...(ipad ? [`col-ipad-${ipad.span}`] : []),
+                    ...(narrowPc ? [`col-narrow-Pc-${narrowPc.span}`] : []),
+                    ...(pc ? [`col-pc-${pc.span}`] : []),
+                    ...(widePc ? [`col-wide-pc-${widePc.span}`] : []),
                 ]
             },
             colStyle() {
@@ -74,22 +73,6 @@
         @for $n from 1 through 24 {
             &.#{$class}#{$n} {
                 margin-left: ($n/24)*100%;
-            }
-        }
-
-        @media (max-width: 576px) {
-            $class: col-phone-;
-            @for $n from 1 through 24 {
-                &.#{$class}#{$n} {
-                    width: ($n/24)*100%;
-                }
-            }
-
-            $class: offset-phone-;
-            @for $n from 1 through 24 {
-                &.#{$class}#{$n} {
-                    margin-left: ($n/24)*100%;
-                }
             }
         }
         @media(min-width: 577px) and(max-width: 768px) {
@@ -137,7 +120,7 @@
                 }
             }
         }
-        @media(min-width: 1600px) {
+        @media(min-width: 1201px) {
             $class: col-wide-pc-;
             @for $n from 1 through 24 {
                 &.#{$class}#{$n} {
