@@ -1,6 +1,7 @@
 <template>
     <div class="sider">
         <slot></slot>
+        <button>close</button>
     </div>
 </template>
 
@@ -12,8 +13,12 @@
 </script>
 
 <style scoped lang="scss">
-    .sider{
-        border: 1px solid black;
-        height: 100px;
+    .sider {
+        > button {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
     }
 </style>

@@ -12,7 +12,6 @@
 
 <style scoped lang="scss">
     .header{
-        border: 1px solid yellow;
-        height: 100px;
+
     }
 </style>
