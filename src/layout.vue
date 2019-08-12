@@ -30,9 +30,10 @@
     .layout {
         flex-grow: 1;
         display: flex;
-        flex-direction: column;
+        flex-direction: column; /* 将目标变成列*/
 
         &.hasSider {
+            /*sider存在,变成一列*/
             flex-direction: row;
         }
     }
