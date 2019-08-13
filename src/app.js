@@ -40,7 +40,16 @@ new Vue({
     },
     methods: {
         showToast() {
-            this.$toast("I am messages")
+            this.$toast('<p>段落</p><strong>hi</strong>', {
+                // 这一段是为了让toast中引用的有定义，不然会显示未定义
+                closeButton: {
+                    text: '知道了',
+                    callback(toast) {
+                        toast.log();
+                        console.log('用户说他知道了');
+                    }
+                }
+            })
         }
     }
 });

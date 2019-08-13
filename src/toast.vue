@@ -1,6 +1,7 @@
 <template>
     <div class="toast">
-        <slot></slot>
+        <slot v-if="!enableHtml"></slot>
+        <div v-else v-html="$slots.default[0]"></div>
         <div class="line"></div>
         <span class="close" v-if="closeButton" @click="onClickClose">
             {{closeButton.text}}
@@ -27,11 +28,13 @@
                 type: Object,
                 default() {
                     return {
-                        text: '关闭', callback: (toast) => {
-                            toast.close()
-                        }
+                        text: '关闭', callback: undefined
                     }
                 }
+            },
+            enableHtml: {
+                type: Boolean,
+                default: false
             }
         },
         mounted() {
@@ -43,12 +46,18 @@
         },
         methods: {
             close() {
-                this.$el.remove();
-                this.$destroy()
+                this.$el.remove(); /*将元素从页面中删掉*/
+                this.$destroy(); /*组件销毁*/
+            },
+            log() {
+                console.log('测试一下')
             },
             onClickClose() {
                 this.close();
-                this.closeButton.callback()
+                //防御性编程
+                if (this.closeButton && typeof this.closeButton.callback === "function") {
+                    this.closeButton.callback(this) /*调用,这里面的this ===toast*/
+                }
             }
         }
     }
