@@ -40,7 +40,7 @@ new Vue({
     },
     methods: {
         showToast() {
-            this.$toast("你好行少数绝对不是看吧")
+            this.$toast("I am messages")
         }
     }
 });

@@ -59,6 +59,7 @@
                 let {span, offset, ipad, narrowPc, pc, widePc} = this;
                 let createClasses = this.createClasses;
                 return [
+                    // 对象中的扩展运算符(...)用于取出参数对象中的所有可遍历属性，拷贝到当前对象之中
                     ...createClasses({span, offset}),
                     ...createClasses(ipad, 'ipad-'),
                     ...createClasses(narrowPc, 'narrow-pc-'),
