@@ -1,8 +1,8 @@
 <template>
-    <div class="toast">
+    <div class="toast" ref="wrapper">
         <slot v-if="!enableHtml"></slot>
         <div v-else v-html="$slots.default[0]"></div>
-        <div class="line"></div>
+        <div class="line" ref="line"></div>
         <span class="close" v-if="closeButton" @click="onClickClose">
             {{closeButton.text}}
         </span>
@@ -43,6 +43,12 @@
                     this.close()
                 }, this.autoCloseDelay * 1000)
             }
+            //通过获取父亲的高度来设置自身的高度，使得有高度就可以100%
+            this.$nextTick(() => {
+                // console.log(this.$refs.wrapper.getBoundingClientRect().height);
+                this.$refs.line.style.height = `${this.$refs.wrapper.getBoundingClientRect().height}px`
+            })
+
         },
         methods: {
             close() {
@@ -65,11 +71,11 @@
 
 <style scoped lang="scss">
     $font-size: 14px;
-    $toast-height: 40px;
+    $toast-min-height: 40px;
     $toast-bg: rgba(0, 0, 0, 0.75);
     .toast {
         font-size: $font-size;
-        height: $toast-height;
+        min-height: $toast-min-height;
         line-height: 1.8;
         color: white;
         position: fixed;
@@ -82,16 +88,19 @@
         border-radius: 4px;
         box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.5);
         padding: 0 16px;
+
+        > .close {
+            padding-left: 16px;
+            flex-shrink: 0;
+        }
+
+        > .line {
+            /*因为上面设置了最小高度，所以这里面的高度也不生效了，解决方法在js里面的 this.$nextTick()*/
+            height: 100%;
+            border-left: 1px solid #666666;
+            margin-left: 16px;
+        }
     }
 
-    .close {
-        padding-left: 16px;
-    }
-
-    .line {
-        height: 100%;
-        border-left: 1px solid #666666;
-        margin-left: 16px;
-    }
 
 </style>
