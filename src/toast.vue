@@ -1,7 +1,9 @@
 <template>
     <div class="toast" ref="wrapper">
-        <slot v-if="!enableHtml"></slot>
-        <div v-else v-html="$slots.default[0]"></div>
+        <div class="message">
+            <slot v-if="!enableHtml"></slot>
+            <div v-else v-html="$slots.default[0]"></div>
+        </div>
         <div class="line" ref="line"></div>
         <span class="close" v-if="closeButton" @click="onClickClose">
             {{closeButton.text}}
@@ -38,19 +40,25 @@
             }
         },
         mounted() {
-            if (this.autoClose) {
-                setTimeout(() => {
-                    this.close()
-                }, this.autoCloseDelay * 1000)
-            }
-            //通过获取父亲的高度来设置自身的高度，使得有高度就可以100%
-            this.$nextTick(() => {
-                // console.log(this.$refs.wrapper.getBoundingClientRect().height);
-                this.$refs.line.style.height = `${this.$refs.wrapper.getBoundingClientRect().height}px`
-            })
-
+            this.execAutoClose();
+            this.updateStyles();
         },
         methods: {
+            updateStyles() {
+                //通过获取父亲的高度来设置自身的高度，使得有高度就可以100%
+                this.$nextTick(() => {
+                    // console.log(this.$refs.wrapper.getBoundingClientRect().height);
+                    this.$refs.line.style.height = `${this.$refs.wrapper.getBoundingClientRect().height}px`
+                })
+            },
+            execAutoClose() {
+                if (this.autoClose) {
+                    setTimeout(() => {
+                        this.close()
+                    }, this.autoCloseDelay * 1000)
+                }
+            },
+
             close() {
                 this.$el.remove(); /*将元素从页面中删掉*/
                 this.$destroy(); /*组件销毁*/
@@ -88,6 +96,10 @@
         border-radius: 4px;
         box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.5);
         padding: 0 16px;
+
+        > .message {
+            padding: 8px 0;
+        }
 
         > .close {
             padding-left: 16px;
