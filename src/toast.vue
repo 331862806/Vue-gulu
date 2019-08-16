@@ -37,6 +37,14 @@
             enableHtml: {
                 type: Boolean,
                 default: false
+            },
+            position: {
+                type: String,
+                default: 'top',
+                validator(value) {
+                    //includes 不支持ie ,换用indexOf 查看value在数组中的位置 当大于-1的时候说明存在这个数
+                    return ['top', 'bottom', 'middle'].indexOf(value) > -1
+                }
             }
         },
         mounted() {
