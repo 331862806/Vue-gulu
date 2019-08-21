@@ -1,5 +1,5 @@
 <template>
-    <div class="toast" ref="wrapper">
+    <div class="toast" ref="wrapper" :class="toastClasses">
         <div class="message">
             <slot v-if="!enableHtml"></slot>
             <div v-else v-html="$slots.default[0]"></div>
@@ -44,6 +44,13 @@
                 validator(value) {
                     //includes 不支持ie ,换用indexOf 查看value在数组中的位置 当大于-1的时候说明存在这个数
                     return ['top', 'bottom', 'middle'].indexOf(value) > -1
+                }
+            }
+        },
+        computed: {
+            toastClasses() {
+                return {
+                    [`position-${this.position}`]: true
                 }
             }
         },
@@ -95,15 +102,13 @@
         line-height: 1.8;
         color: white;
         position: fixed;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
         display: flex;
         align-items: center;
         background: $toast-bg;
         border-radius: 4px;
         box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.5);
         padding: 0 16px;
+        left: 50%;
 
         > .message {
             padding: 8px 0;
@@ -119,6 +124,19 @@
             height: 100%;
             border-left: 1px solid #666666;
             margin-left: 16px;
+        }
+        &.position-top{
+            top: 0;
+            transform: translateX(-50%);
+
+        }
+        &.position-bottom{
+            bottom: 0;
+            transform: translateX(-50%);
+        }
+        &.position-middle{
+            top: 50%;
+            transform: translate(-50%,-50%);
         }
     }
 
