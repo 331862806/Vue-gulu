@@ -76,6 +76,8 @@
 
             close() {
                 this.$el.remove(); /*将元素从页面中删掉*/
+
+                this.$emit('close')
                 this.$destroy(); /*组件销毁*/
             },
             log() {
@@ -125,18 +127,21 @@
             border-left: 1px solid #666666;
             margin-left: 16px;
         }
-        &.position-top{
+
+        &.position-top {
             top: 0;
             transform: translateX(-50%);
 
         }
-        &.position-bottom{
+
+        &.position-bottom {
             bottom: 0;
             transform: translateX(-50%);
         }
-        &.position-middle{
+
+        &.position-middle {
             top: 50%;
-            transform: translate(-50%,-50%);
+            transform: translate(-50%, -50%);
         }
     }
 
