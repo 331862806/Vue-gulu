@@ -76,8 +76,7 @@
 
             close() {
                 this.$el.remove(); /*将元素从页面中删掉*/
-
-                this.$emit('close')
+                this.$emit('close');
                 this.$destroy(); /*组件销毁*/
             },
             log() {
@@ -98,13 +97,13 @@
     $font-size: 14px;
     $toast-min-height: 40px;
     $toast-bg: rgba(0, 0, 0, 0.75);
-    @keyframes fade {
+    @keyframes fade_in {
         0% {opacity: 0; transform: translateY(100%);}
         100% {opacity: 1;transform: translateY(0%);}
     }
 
     .toast {
-        animation: fade 1s;
+        animation: fade_in 1s;
         font-size: $font-size;
         min-height: $toast-min-height;
         line-height: 1.8;
