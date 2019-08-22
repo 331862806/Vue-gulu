@@ -57,6 +57,8 @@
             }
         },
         mounted() {
+            // console.log('mounted');
+            // console.log(this.autoCloseDelay);
             this.execAutoClose();
             this.updateStyles();
         },
@@ -70,6 +72,7 @@
             },
             execAutoClose() {
                 if (this.autoClose) {
+                    // console.log(`setTimeout ${this.autoCloseDelay}`);
                     setTimeout(() => {
                         this.close()
                     }, this.autoCloseDelay * 1000)
