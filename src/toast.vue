@@ -21,12 +21,12 @@
         },
         props: {
             autoClose: {
-                type: Boolean,
-                default: true
-            },
-            autoCloseDelay: {
-                type: Number,
-                default: 50
+                type: [Boolean, Number],
+                default: 5,
+                validate(value) {
+                    return value === false || typeof value === 'number';
+                }
+
             },
             closeButton: {
                 type: Object,
@@ -37,6 +37,7 @@
                 }
             },
             enableHtml: {
+                // <strong>你好</strong>
                 type: Boolean,
                 default: false
             },
@@ -75,7 +76,7 @@
                     // console.log(`setTimeout ${this.autoCloseDelay}`);
                     setTimeout(() => {
                         this.close()
-                    }, this.autoCloseDelay * 1000)
+                    }, this.autoClose * 1000)
                 }
             },
 
