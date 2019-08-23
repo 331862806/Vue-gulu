@@ -66,8 +66,10 @@
         methods: {
             updateStyles() {
                 //通过获取父亲的高度来设置自身的高度，使得有高度就可以100%
-                this.$nextTick(() => {
+                this.$nextTick(() => { // 有一点点时间间隙，所以最后的测试用例加上 setTimeout
                     // console.log(this.$refs.toast.getBoundingClientRect().height);
+                    console.log(this.$refs);
+                    console.log(this.$refs.line); // undefined
                     this.$refs.line.style.height = `${this.$refs.toast.getBoundingClientRect().height}px`
                 })
             },
