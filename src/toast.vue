@@ -174,7 +174,7 @@
 
         > .close {
             padding-left: 16px;
-            flex-shrink: 0;
+            flex-shrink: 0; /*指定了 flex 元素的收缩规则*/
         }
 
         > .line {

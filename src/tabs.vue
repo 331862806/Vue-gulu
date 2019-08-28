@@ -24,7 +24,7 @@
             }
         },
         data() {
-            return{
+            return {
                 eventBus: new Vue
             }
         },
@@ -33,11 +33,10 @@
             return {
                 eventBus: this.eventBus
             }
-        }
-        ,
-        created() {
+        },
+        mounted() {
             // this.$emit('update:selected','这是一个 this.$emit 出来的数据');
-            // this.eventBus.$emit('update:selected','这是一个 this.eventBus.$emit 出来的数据');
+            this.eventBus.$emit('update:selected',this.selected);
             // this.$emit('update:selected','xxx')
         }
     }

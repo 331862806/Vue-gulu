@@ -1,17 +1,19 @@
 <template>
     <div class="tabs-head">
         <slot></slot>
-        <slot name="actions"></slot>
+        <div class="actions-wrapper">
+            <slot name="actions"></slot>
+        </div>
     </div>
-    
+
 </template>
 
 <script>
     export default {
         name: "GuLuTabsHead",
-        inject:['eventBus'],
+        inject: ['eventBus'],
         created() {
-            this.$emit('update:selected','tabs-head 抛出的数据');
+            this.$emit('update:selected', 'tabs-head 抛出的数据');
 
         }
 
@@ -19,7 +21,17 @@
 </script>
 
 <style scoped lang="scss">
-    .tabs-head{
+    $tab-height: 40px;
 
+    .tabs-head {
+        display: flex;
+        height: $tab-height;
+        justify-content: flex-start; //jfc:c  /* 从行首起始位置开始排列 */
+        align-items: center; //ali:c
+        border: 1px solid red;
+
+        > .actions-wrapper {
+            margin-left: auto;
+        }
     }
 </style>
