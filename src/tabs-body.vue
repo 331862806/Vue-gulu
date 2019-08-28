@@ -7,7 +7,11 @@
 
 <script>
     export default {
-        name: "GuLuTabsBody"
+        name: "GuLuTabsBody",
+        inject:['eventBus'],
+        created() {
+
+        }
 
     }
 </script>
