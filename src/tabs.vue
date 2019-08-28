@@ -38,6 +38,11 @@
             // this.$emit('update:selected','这是一个 this.$emit 出来的数据');
             this.eventBus.$emit('update:selected',this.selected);
             // this.$emit('update:selected','xxx')
+        },
+        created() {
+            this.$emit('update:selected','这是一个 this.$emit 出来的数据');
+            this.eventBus.$emit('update:selected','this.eventBus.$emit 出来的数据');
+            // this.$emit('update:selected','xxx')
         }
     }
 </script>
