@@ -40,9 +40,9 @@
             // 找儿子，儿子里找孙子，孙子里哪个是
             this.$children.forEach((vm) => {
                 if (vm.$options.name === 'GuLuTabsHead') {
-                    vm.$children.forEach((item) => {
-                        if (item.$options.name === 'GuLuTabsItem' && item.name === this.selected) {
-                            this.eventBus.$emit('update:selected', this.selected,item);
+                    vm.$children.forEach((childVm) => {
+                        if (childVm.$options.name === 'GuLuTabsItem' && childVm.name === this.selected) {
+                            this.eventBus.$emit('update:selected', this.selected,childVm);
                         }
                     })
                 }
