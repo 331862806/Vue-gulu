@@ -19,6 +19,7 @@
                 type: String,
                 default: 'horizontal',
                 validator(value) {
+                    // return ['horizontal', 'vertical'].includes(value)
                     return ['horizontal', 'vertical'].indexOf(value) > -1;
                 }
             }
@@ -36,12 +37,12 @@
         },
         mounted() {
             // this.$emit('update:selected','这是一个 this.$emit 出来的数据');
-            this.eventBus.$emit('update:selected',this.selected);
+            this.eventBus.$emit('update:selected', this.selected);
             // this.$emit('update:selected','xxx')
         },
         created() {
-            this.$emit('update:selected','这是一个 this.$emit 出来的数据');
-            this.eventBus.$emit('update:selected','this.eventBus.$emit 出来的数据');
+            this.$emit('update:selected', '这是一个 this.$emit 出来的数据');
+            this.eventBus.$emit('update:selected', 'this.eventBus.$emit 出来的数据');
             // this.$emit('update:selected','xxx')
         }
     }

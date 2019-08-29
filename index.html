@@ -35,7 +35,7 @@
 
 <body>
 <div id="app">
-    <!--<g-tabs selected="selectedTab" @update:selected="selectedTab =$event">-->
+    <!--<g-tabs :selected="selectedTab" @update:selected="selectedTab =$event">-->
     <g-tabs :selected.sync="selectedTab" @update:selected="yyy">
         <g-tabs-head>
             <template slot="actions">
@@ -65,7 +65,6 @@
             </g-tabs-pane>
         </g-tabs-body>
     </g-tabs>
-
 </div>
 
 <script src="./src/app.js"></script>

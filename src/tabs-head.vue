@@ -13,7 +13,6 @@
         name: "GuLuTabsHead",
         inject: ['eventBus'],
         created() {
-            this.$emit('update:selected', 'tabs-head 抛出的数据');
 
         }
 
