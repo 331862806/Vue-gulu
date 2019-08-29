@@ -1,5 +1,5 @@
 <template>
-    <div class="tabs-item" @click="xxx" :class="classes">
+    <div class="tabs-item" @click="onClick" :class="classes">
         <slot></slot>
     </div>
 
@@ -11,7 +11,7 @@
         inject: ['eventBus'],
         data() { // 不需要用户传值，自身维护值
             return {
-                active: false
+                active: false,
             }
         },
         props: { // 需要用户(前端开发者)传值
@@ -24,10 +24,11 @@
                 required: true
             }
         },
-        computed:{
-            classes(){
-                return{
-                    active:this.active
+        computed: {
+            classes() {
+                return {
+                    active: this.active,
+                    disabled: this.disabled
                 }
             }
         },
@@ -37,8 +38,12 @@
             });
         },
         methods: {
-            xxx() {
-                this.eventBus.$emit('update:selected', this.name,this)
+            onClick() {
+                if (this.disabled) {
+                    return
+                }
+                console.log(this.disabled);
+                this.eventBus.$emit('update:selected', this.name, this)
             }
         }
 
@@ -46,17 +51,25 @@
 </script>
 
 <style scoped lang="scss">
-    $blue:blue;
+    $blue: blue;
+    $disabled-text-color:grey;
     .tabs-item {
         flex-shrink: 0; /*指定了 flex 元素的收缩规则*/
         padding: 0 1em; /*用em就是不关心隔了多少像素，就关心字和字之间是否隔得开*/
-        cursor: pointer; /*鼠标样式*/ //c:p
+        cursor: pointer; /*鼠标样式*/
+        //c:p
         height: 100%;
         display: flex;
         align-items: center;
-        &.active{
+
+        &.active {
             color: $blue;
             font-weight: bold;
+        }
+
+        &.disabled {
+            color: $disabled-text-color;
+            cursor: not-allowed;
         }
     }
 </style>
