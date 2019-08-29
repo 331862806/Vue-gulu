@@ -38,7 +38,7 @@
         },
         methods: {
             xxx() {
-                this.eventBus.$emit('update:selected', this.name)
+                this.eventBus.$emit('update:selected', this.name,this)
             }
         }
 
@@ -46,16 +46,17 @@
 </script>
 
 <style scoped lang="scss">
+    $blue:blue;
     .tabs-item {
         flex-shrink: 0; /*指定了 flex 元素的收缩规则*/
         padding: 0 1em; /*用em就是不关心隔了多少像素，就关心字和字之间是否隔得开*/
         cursor: pointer; /*鼠标样式*/ //c:p
-        border: 1px solid green;
         height: 100%;
         display: flex;
         align-items: center;
         &.active{
-            background: red;
+            color: $blue;
+            font-weight: bold;
         }
     }
 </style>

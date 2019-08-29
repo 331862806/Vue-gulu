@@ -36,9 +36,18 @@
             }
         },
         mounted() {
-            // this.$emit('update:selected','这是一个 this.$emit 出来的数据');
-            this.eventBus.$emit('update:selected', this.selected);
-            // this.$emit('update:selected','xxx')
+            // console.log(this.$children);
+            // 找儿子，儿子里找孙子，孙子里哪个是
+            this.$children.forEach((vm) => {
+                if (vm.$options.name === 'GuLuTabsHead') {
+                    vm.$children.forEach((item) => {
+                        if (item.$options.name === 'GuLuTabsItem' && item.name === this.selected) {
+                            this.eventBus.$emit('update:selected', this.selected,item);
+                        }
+                    })
+                }
+
+            })
         },
         created() {
             this.$emit('update:selected', '这是一个 this.$emit 出来的数据');
