@@ -1,5 +1,5 @@
 <template>
-    <div class="tabs-item" @click="onClick" :class="classes">
+    <div class="tabs-item" @click="onClick" :class="classes" :data-name=name>
         <slot></slot>
     </div>
 
@@ -33,17 +33,17 @@
             }
         },
         created() {
-            this.eventBus.$on('update:selected', (name) => {
-                this.active = name === this.name ? true : false;
-            });
+            if (this.eventBus) {
+                this.eventBus.$on('update:selected', (name) => {
+                    this.active = name === this.name ? true : false;
+                });
+            }
         },
         methods: {
             onClick() {
-                if (this.disabled) {
-                    return
-                }
-                console.log(this.disabled);
-                this.eventBus.$emit('update:selected', this.name, this)
+                if (this.disabled) {return}
+                this.eventBus && this.eventBus.$emit('update:selected', this.name, this)
+                this.$emit('click')
             }
         }
 
@@ -52,7 +52,7 @@
 
 <style scoped lang="scss">
     $blue: blue;
-    $disabled-text-color:grey;
+    $disabled-text-color: grey;
     .tabs-item {
         flex-shrink: 0; /*指定了 flex 元素的收缩规则*/
         padding: 0 1em; /*用em就是不关心隔了多少像素，就关心字和字之间是否隔得开*/

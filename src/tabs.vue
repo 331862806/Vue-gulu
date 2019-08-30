@@ -36,13 +36,17 @@
             }
         },
         mounted() {
-            // console.log(this.$children);
+            // 只能获取子组件不能获取子元素，所以长度 为0 就是没有子组件
+            if (this.$children.length === 0) {
+                console && console.warn &&
+                console.warn('tabs 的子组件应该是tabs-head和 tabs-body,但你没有写子组件')
+            }
             // 找儿子，儿子里找孙子，孙子里哪个是
             this.$children.forEach((vm) => {
                 if (vm.$options.name === 'GuLuTabsHead') {
                     vm.$children.forEach((childVm) => {
                         if (childVm.$options.name === 'GuLuTabsItem' && childVm.name === this.selected) {
-                            this.eventBus.$emit('update:selected', this.selected,childVm);
+                            this.eventBus.$emit('update:selected', this.selected, childVm);
                         }
                     })
                 }
