@@ -1,5 +1,5 @@
 <template>
-    <div class="tabs-pane" :class="classes" v-if="active">
+    <div class="tabs-pane" :class="classes" :data-name="name" v-if="active">
         <slot></slot>
     </div>
 
@@ -28,10 +28,12 @@
             }
         },
         created() {
-            this.eventBus.$on('update:selected', (name) => {
-                // console.log(`pane ${this.name}被选中了`);
-                this.active = name === this.name ? true : false;
-            });
+            if (this.eventBus) {
+                this.eventBus.$on('update:selected', (name) => {
+                    // console.log(`pane ${this.name}被选中了`);
+                    this.active = name === this.name ? true : false;
+                });
+            }
         }
 
     }
