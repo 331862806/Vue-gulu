@@ -1,6 +1,6 @@
 <template>
-    <div class="popover" @click="xxx">
-        <div class="content-wrapper" v-if="visible">
+    <div class="popover" @click.stop="xxx">
+        <div class="content-wrapper" v-if="visible" @click.stop>
             <slot name="content"></slot>
         </div>
         <slot></slot>
@@ -9,17 +9,30 @@
 
 <script>
     export default {
-        name: "popover",
+        name: "GuLuPopover",
         data() {
-            return {
-                visible: false
-            };
+            return { visible: false };
         },
         methods: {
             xxx() {
                 this.visible = !this.visible;
+                console.log('切换visible');
+                if (this.visible === true) {
+                    this.$nextTick(() => {
+                        console.log("新增 document click 监听器");
+                        let eventHandler = () => {
+                            console.log('点击body就关闭popover');
+                            this.visible = false
+                            console.log("删除监听器");
+                            document.removeEventListener('click', eventHandler)
+                        }
+                        document.addEventListener('click', eventHandler)
+                    })
+                }else {
+                    console.log("vm 隐藏 popover")
+                }
             }
-        },
+        }
     }
 </script>
 
