@@ -24,11 +24,12 @@
                             console.log('点击body就关闭popover');
                             this.visible = false
                             console.log("删除监听器");
+                            console.log("document 隐藏 popover");
                             document.removeEventListener('click', eventHandler)
                         }
                         document.addEventListener('click', eventHandler)
                     })
-                }else {
+                } else {
                     console.log("vm 隐藏 popover")
                 }
             }
